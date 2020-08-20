@@ -6,13 +6,15 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self):
+    def __init__(self, length=0):
         self.head = None
         self.tail = None
+        self.length = length
 
     def add_to_tail(self, value):
         # Create the node
         newNode = Node(value, None)
+        self.length += 1
         # Check to see if there is a tail value
         if self.head is None:
             # If no tail: Set value as Tail (Assumed empty list)
@@ -31,6 +33,7 @@ class LinkedList:
         if self.head is None:
             return None
         else:
+            self.length -= 1
             # Check to see if there is a list of one
             if self.head == self.tail:
                 # Set both head and tail to none
@@ -49,11 +52,13 @@ class LinkedList:
             return None
 
         elif self.head == self.tail:
+            self.length -= 1
             oldTail = self.tail
             self.head = None
             self.tail = None
             return oldTail.value
         else:
+            self.length -= 1
             current = self.head
             # I need to ID the Tail to know when to stop
             oldTail = self.tail
